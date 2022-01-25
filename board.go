@@ -112,12 +112,14 @@ type (
 	}
 	Annotation struct {
 		Name        string   `json:"name"`
+		BuiltIn     uint8    `json:"builtIn"`
 		Datasource  *string  `json:"datasource"`
 		ShowLine    bool     `json:"showLine"`
 		IconColor   string   `json:"iconColor"`
 		LineColor   string   `json:"lineColor"`
 		IconSize    uint     `json:"iconSize"`
 		Enable      bool     `json:"enable"`
+		Hidden      bool     `json:"hide"`
 		Query       string   `json:"query"`
 		Expr        string   `json:"expr"`
 		Step        string   `json:"step"`
