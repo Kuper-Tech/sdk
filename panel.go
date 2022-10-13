@@ -168,7 +168,8 @@ type (
 		FieldConfig     *FieldConfig     `json:"fieldConfig,omitempty"`
 	}
 	FieldConfig struct {
-		Defaults FieldConfigDefaults `json:"defaults"`
+		Defaults  FieldConfigDefaults  `json:"defaults"`
+		Overrides FieldConfigOverrides `json:"overrides"`
 	}
 	Options struct {
 		Orientation   string `json:"orientation"`
@@ -255,28 +256,29 @@ type (
 		ValueName       string      `json:"valueName"`
 	}
 	StatPanel struct {
-		Colors          []string    `json:"colors"`
-		ColorValue      bool        `json:"colorValue"`
-		ColorBackground bool        `json:"colorBackground"`
-		Decimals        int         `json:"decimals"`
-		Format          string      `json:"format"`
-		Gauge           Gauge       `json:"gauge,omitempty"`
-		MappingType     *uint       `json:"mappingType,omitempty"`
-		MappingTypes    []*MapType  `json:"mappingTypes,omitempty"`
-		MaxDataPoints   *IntString  `json:"maxDataPoints,omitempty"`
-		NullPointMode   string      `json:"nullPointMode"`
-		Postfix         *string     `json:"postfix,omitempty"`
-		PostfixFontSize *string     `json:"postfixFontSize,omitempty"`
-		Prefix          *string     `json:"prefix,omitempty"`
-		PrefixFontSize  *string     `json:"prefixFontSize,omitempty"`
-		RangeMaps       []*RangeMap `json:"rangeMaps,omitempty"`
-		SparkLine       SparkLine   `json:"sparkline,omitempty"`
-		Targets         []Target    `json:"targets,omitempty"`
-		Thresholds      string      `json:"thresholds"`
-		ValueFontSize   string      `json:"valueFontSize"`
-		ValueMaps       []ValueMap  `json:"valueMaps"`
-		ValueName       string      `json:"valueName"`
-		Options         Options     `json:"options"`
+		Colors          []string     `json:"colors"`
+		ColorValue      bool         `json:"colorValue"`
+		ColorBackground bool         `json:"colorBackground"`
+		Decimals        int          `json:"decimals"`
+		Format          string       `json:"format"`
+		Gauge           Gauge        `json:"gauge,omitempty"`
+		MappingType     *uint        `json:"mappingType,omitempty"`
+		MappingTypes    []*MapType   `json:"mappingTypes,omitempty"`
+		MaxDataPoints   *IntString   `json:"maxDataPoints,omitempty"`
+		NullPointMode   string       `json:"nullPointMode"`
+		Postfix         *string      `json:"postfix,omitempty"`
+		PostfixFontSize *string      `json:"postfixFontSize,omitempty"`
+		Prefix          *string      `json:"prefix,omitempty"`
+		PrefixFontSize  *string      `json:"prefixFontSize,omitempty"`
+		RangeMaps       []*RangeMap  `json:"rangeMaps,omitempty"`
+		SparkLine       SparkLine    `json:"sparkline,omitempty"`
+		Targets         []Target     `json:"targets,omitempty"`
+		Thresholds      string       `json:"thresholds"`
+		ValueFontSize   string       `json:"valueFontSize"`
+		ValueMaps       []ValueMap   `json:"valueMaps"`
+		ValueName       string       `json:"valueName"`
+		Options         Options      `json:"options"`
+		FieldConfig     *FieldConfig `json:"fieldConfig,omitempty"`
 	}
 	DashlistPanel struct {
 		Mode     string   `json:"mode"`
@@ -381,6 +383,18 @@ type (
 		Thresholds Thresholds        `json:"thresholds"`
 		Custom     FieldConfigCustom `json:"custom"`
 		Links      []Link            `json:"links,omitempty"`
+	}
+	FieldConfigOverrides []struct {
+		Matcher    FieldConfigOverridesMatcher      `json:"matcher"`
+		Properties []FieldConfigOverridesProperties `json:"properties"`
+	}
+	FieldConfigOverridesMatcher struct {
+		ID      string `json:"id"`
+		Options string `json:"options"`
+	}
+	FieldConfigOverridesProperties struct {
+		ID    string `json:"id"`
+		Value string `json:"value"`
 	}
 	FieldConfigCustom struct {
 		AxisLabel         string `json:"axisLabel,omitempty"`
